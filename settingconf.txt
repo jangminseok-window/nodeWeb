@@ -32,9 +32,12 @@ sudo systemctl disable mysql
 
 
 
-
 sudo systemctl start mysql
 sudo systemctl enable mysql
+6.CREATE DATABASE midstardb; database생성
+ db사용 : use midstardb;
+
+접속: mysql -u midstar -p
 
 
 공식 dns
