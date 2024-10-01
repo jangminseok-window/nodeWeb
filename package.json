@@ -1,0 +1,12 @@
+{
+  "name": "nodeweb",
+  "version": "1.0.0",
+  "description": "****\r 개인 블로그 사이트를 AWS에서 Nodejs 사용하여 구축한 사이트",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
