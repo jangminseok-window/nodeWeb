@@ -250,6 +250,37 @@ module.exports = { connect };
   - compass 설치후 연결함.
   
 
+----
+jenkins 설정
+-----
+Jenkins 실행 및 브라우저에서 접근:
+설치가 완료되면, Jenkins는 자동으로 실행됩니다.
+
+기본적으로 Jenkins는 로컬에서 http://localhost:8080 주소로 접근할 수 있습니다. 이를 위해 웹 브라우저를 열고 위 주소로 접속하세요.
+
+초기 설정 페이지가 나타나면, Administrator password를 입력하라는 메시지가 나옵니다. 이 비밀번호는 Jenkins 설치 중 생성되며, 파일에서 찾을 수 있습니다.
+
+비밀번호 파일 위치:
+C:\Users\TOURSOFT\AppData\Local\Jenkins\.jenkins\secrets\initialAdminPassword
+
+시작.net start jenkins
+중지.net stop jenkins
+
+admin/!Dlal~~
+
+
+--- 로컬에서 공용 ip없는 상태에서 jenkins  활용법 ---
+https://ngrok.com/  구글 계정으로 연동함
+
+webhook사용해보자
+https://ngrok.com/
+복구 문구 gmail 에서 찾아볼것
+
+D:\ngrok>ngrok config add-authtoken 2moraT9n2a114QOYK7tHExe8bwX_4QC6pzUv785E2gLnqfCJS
+Authtoken saved to configuration file: C:\Users\TOURSOFT\AppData\Local/ngrok/ngrok.yml
+Forwarding  https://4e07-112-217-239-226.ngrok-free.app -> http://localhost:8080 
+
+                                                                                                                                                                                                                                                              Help shape K8s Bindings https://ngrok.com/new-features-update?ref=k8s                                                                                                                                                                                                                                 Session Status                online                                                                                                               Account                       midstar.jang@gmail.com (Plan: Free)                                                                                  Version                       3.16.0                                                                                                               Region                        Japan (jp)                                                                                                           Latency                       41ms                                                                                                                 Web Interface                 http://127.0.0.1:4040                                                                                                Forwarding                    https://4e07-112-217-239-226.ngrok-free.app -> http://localhost:8080                                                                                                                                                                                                    Connections                   ttl     opn     rt1     rt5     p50     p90                                                                                                        0       0       0.00    0.00    0.00    0.00                                                                                                                                                                       
 
 
 
