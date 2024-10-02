@@ -46,6 +46,8 @@ sudo systemctl enable mysql
 
 공식 dns
 ec2-43-203-244-204.ap-northeast-2.compute.amazonaws.com
+
+공식 IP : 43.201.220.132
 --------------------------------------
 sudo apt install apache2 -y   # Ubuntu
 sudo systemctl start apache2   # Ubuntu
