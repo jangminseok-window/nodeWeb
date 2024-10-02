@@ -4,6 +4,7 @@ const cors = require('cors');
 const boardRoutes = require('./board');
 const authRoutes = require('./auth');
 const userRoutes = require('./user');
+const voteRoutes = require('./vote');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/board', boardRoutes);
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/vote', voteRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
