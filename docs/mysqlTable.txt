@@ -1,0 +1,21 @@
+DROP TABLE IF EXISTS `board`;
+CREATE TABLE `board` (
+  `bnum` int NOT NULL,
+  `id` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8_bin NOT NULL,
+  `title` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8_bin NOT NULL,
+  `content` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8_bin NOT NULL,
+  `writedate` date NOT NULL,
+  PRIMARY KEY (`bnum`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+DROP TABLE IF EXISTS `file`;
+CREATE TABLE `file` (
+  `fnum` int NOT NULL AUTO_INCREMENT,
+  `bnum` int NOT NULL,
+  `savefile` varchar(45) CHARACTER SET utf8mb3 NOT NULL,
+  `filetype` varchar(45) CHARACTER SET utf8mb3 NOT NULL,
+  `writedate` date DEFAULT NULL,
+  PRIMARY KEY (`fnum`),
+  KEY `board_bnum_fk_idx` (`bnum`),
+  CONSTRAINT `board_bnum_fk` FOREIGN KEY (`bnum`) REFERENCES `board` (`bnum`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;

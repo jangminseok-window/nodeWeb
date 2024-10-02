@@ -18,7 +18,11 @@ mysql 시작
 2.사용자 생성
 CREATE USER 'midstar'@'localhost' IDENTIFIED BY 'dlalwjd5';
 3.권한설정
-GRANT ALL PRIVILEGES ON *.* TO 'midstar'@'localhost' WITH GRANT OPTION;
+CREATE USER 'midstar'@'%' IDENTIFIED BY 'dlalwjd5';
+
+GRANT ALL PRIVILEGES ON *.* TO 'midstar'@'%'; --로컬 / 원격 모두 접근가능
+
+
 4. 설정 적용
  FLUSH PRIVILEGES;
 
