@@ -1,21 +1,16 @@
-
 const express = require("express");
 const router = express.Router();
-
 const multer = require("multer");
-const cors = require("cors");
 const fs = require("fs");
-const bodyParser = require("body-parser");
 const db = require("./config/mysqlConn.js");
 
 const conn = db.init();
 const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, callback) {
-      console.log(file),
-        fs.existsSync("./uploads/") ||
-          fs.mkdirSync("./uploads/", { recursive: !0 }),
-        callback(null, "./uploads/");
+      console.log(file);
+      fs.existsSync("./uploads/") || fs.mkdirSync("./uploads/", { recursive: true });
+      callback(null, "./uploads/");
     },
     filename: function (req, file, callback) {
       callback(null, file.originalname);
@@ -23,96 +18,113 @@ const upload = multer({
   }),
 });
 
-const app = express();
-app.set("port", process.env.PORT || 3000);
-app.set("host", process.env.HOST || "0.0.0.0");
-
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
 // 게시글 목록 보기
-app.get("/view", function (req, res) {
-  var sql = "select * from board";
+router.get("/view", function (req, res) {
+  var sql = "SELECT * FROM board";
   conn.query(sql, function (err, result) {
-    if (err) console.log("query is not excuted: " + err);
-    else res.send(result);
-  });
-});
-
-// 게시글 쓰기
-app.post("/insert", upload.single("img"), function (req, res) {
-  var body = req.body;
-  var sql = "SELECT count(*)+1 as bnum FROM board ";
-  conn.query(sql, function (err, result) {
-    if (err) console.log("query is 000 not excuted: " + err);
-    else {
-      var sql =
-        "insert into board (bnum,id,title,content,writedate) values(?,?,?,?,NOW())";
-      var params = [result[0].bnum, body.id, body.title, body.content];
-      conn.query(sql, params, function (err) {
-        if (err) {
-             console.log("query is not 111excuted: " + err);
-             console.log("bnum: " + result[0].bnum);
-             console.log("id: " + body.id);
-             console.log("title: " +  body.title);
-        }
-        else if (req.file != null) {
-          // 만약 업로드 된 파일이 있다면
-          var sql =
-            "insert into file (bnum,savefile,filetype,writedate) values (?,?,?,now())";
-          var params = [result[0].bnum, req.file.originalname, req.file.mimetype];
-          conn.query(sql, params, function (err) {
-            if (err) console.log("query is 222 not excuted: " + err);
-            else res.sendStatus(200);
-          });
-        } else res.sendStatus(200);
-      });
+    if (err) {
+      console.log("Query error: " + err);
+      res.status(500).json({ error: "Internal Server Error" });
+    } else {
+      res.json(result);
     }
   });
 });
 
-// 게시글 보기
-app.get("/read/:bnum", function (req, res) {
-  var sql = "select * from board where bnum=" + req.params.bnum;
+// 게시글 쓰기
+router.post("/insert", upload.single("img"), function (req, res) {
+  var body = req.body;
+  var sql = "SELECT COUNT(*) + 1 AS bnum FROM board";
   conn.query(sql, function (err, result) {
-    if (err) console.log("query is not excuted: " + err);
-    else res.send(result);
+    if (err) {
+      console.log("Query error: " + err);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+    var sql = "INSERT INTO board (bnum, id, title, content, writedate) VALUES (?, ?, ?, ?, NOW())";
+    var params = [result[0].bnum, body.id, body.title, body.content];
+    conn.query(sql, params, function (err) {
+      if (err) {
+        console.log("Query error: " + err);
+        return res.status(500).json({ error: "Internal Server Error" });
+      }
+      if (req.file) {
+        var sql = "INSERT INTO file (bnum, savefile, filetype, writedate) VALUES (?, ?, ?, NOW())";
+        var params = [result[0].bnum, req.file.originalname, req.file.mimetype];
+        conn.query(sql, params, function (err) {
+          if (err) {
+            console.log("Query error: " + err);
+            return res.status(500).json({ error: "Internal Server Error" });
+          }
+          res.status(200).json({ message: "Post created successfully" });
+        });
+      } else {
+        res.status(200).json({ message: "Post created successfully" });
+      }
+    });
+  });
+});
+
+// 게시글 보기
+router.get("/read/:bnum", function (req, res) {
+  var sql = "SELECT * FROM board WHERE bnum = ?";
+  conn.query(sql, [req.params.bnum], function (err, result) {
+    if (err) {
+      console.log("Query error: " + err);
+      res.status(500).json({ error: "Internal Server Error" });
+    } else {
+      res.json(result);
+    }
   });
 });
 
 // 게시글 수정
-app.post("/update/:bnum", function (req, res) {
+router.post("/update/:bnum", function (req, res) {
   var body = req.body;
-  var sql =
-    "update board set id=?, title=?, content=? where bnum=" + req.params.bnum;
-  var params = [body.id, body.title, body.content];
+  var sql = "UPDATE board SET id = ?, title = ?, content = ? WHERE bnum = ?";
+  var params = [body.id, body.title, body.content, req.params.bnum];
   conn.query(sql, params, function (err) {
-    if (err) console.log("query is not excuted: " + err);
-    else res.sendStatus(200);
+    if (err) {
+      console.log("Query error: " + err);
+      res.status(500).json({ error: "Internal Server Error" });
+    } else {
+      res.status(200).json({ message: "Post updated successfully" });
+    }
   });
 });
 
 // 게시글 삭제
-app.get("/delete/:bnum", function (req, res) {
-  var sql = "delete from board where bnum=" + req.params.bnum;
-  conn.query(sql, function (err) {
-    if (err) console.log("query is not excuted: " + err);
-    else res.sendStatus(200);
+router.get("/delete/:bnum", function (req, res) {
+  var sql = "DELETE FROM board WHERE bnum = ?";
+  conn.query(sql, [req.params.bnum], function (err) {
+    if (err) {
+      console.log("Query error: " + err);
+      res.status(500).json({ error: "Internal Server Error" });
+    } else {
+      res.status(200).json({ message: "Post deleted successfully" });
+    }
   });
 });
 
 // 이미지 파일 불러오기
-app.get("/img/:bnum", function (req, res) {
-  var sql = "select * from file where bnum=" + req.params.bnum;
-  conn.query(sql, function (err, result) {
-    if (err) console.log("query is not excuted: " + err);
-    else if (result.length != 0) {
+router.get("/img/:bnum", function (req, res) {
+  var sql = "SELECT * FROM file WHERE bnum = ?";
+  conn.query(sql, [req.params.bnum], function (err, result) {
+    if (err) {
+      console.log("Query error: " + err);
+      res.status(500).json({ error: "Internal Server Error" });
+    } else if (result.length != 0) {
       fs.readFile("uploads/" + result[0].savefile, function (err, data) {
-        res.writeHead(200, { "Context-Type": "text/html" });
-        res.end(data);
+        if (err) {
+          console.log("File read error: " + err);
+          res.status(500).json({ error: "Internal Server Error" });
+        } else {
+          res.writeHead(200, { "Content-Type": "image/jpeg" });
+          res.end(data);
+        }
       });
-    } else res.sendStatus(200);
+    } else {
+      res.status(404).json({ error: "File not found" });
+    }
   });
 });
 

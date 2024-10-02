@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const boardRoutes = require('./board');
 const authRoutes = require('./auth');
+const userRoutes = require('./user');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // 라우트 연결
 app.use('/board', boardRoutes);
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -1,16 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const db = require('./config/mysqlConn');
+const db = require('./config/mysqlConn.js');
 
-// 인증 관련 라우트
-router.post('/login', (req, res) => {
-  // 로그인 로직
+const conn = db.init();
+
+// 로그인
+router.post('/login', function(req, res) {
+  const { username, password } = req.body;
+  const sql = 'SELECT * FROM users WHERE username = ? AND password = ?';
+  conn.query(sql, [username, password], function(err, result) {
+    if (err) {
+      console.log('Query error: ' + err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+    if (result.length > 0) {
+      res.status(200).json({ message: 'Login successful', user: result[0] });
+    } else {
+      res.status(401).json({ error: 'Invalid credentials' });
+    }
+  });
 });
 
-router.post('/register', (req, res) => {
-  // 회원가입 로직
+// 로그아웃 (세션 기반 인증을 사용한다고 가정)
+router.get('/logout', function(req, res) {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Logout failed' });
+    }
+    res.status(200).json({ message: 'Logout successful' });
+  });
 });
-
-// 기타 인증 관련 라우트...
 
 module.exports = router;
