@@ -1,10 +1,13 @@
+
 const express = require("express");
+const router = express.Router();
+
 const multer = require("multer");
 const cors = require("cors");
 const fs = require("fs");
 const bodyParser = require("body-parser");
 const db = require("./config/mysqlConn.js");
-const app = express();
+
 const conn = db.init();
 const upload = multer({
   storage: multer.diskStorage({
@@ -112,9 +115,4 @@ app.get("/img/:bnum", function (req, res) {
   });
 });
 
-// 서버 동작중인 표시
-app.listen(app.get("port"), app.get("host"), () =>
-  console.log(
-    "Server is running on : " + app.get("host") + ":" + app.get("port")
-  )
-);
+module.exports = router;
