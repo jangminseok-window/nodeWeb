@@ -41,20 +41,25 @@ app.post("/insert", upload.single("img"), function (req, res) {
   var body = req.body;
   var sql = "SELECT count(*)+1 as bnum FROM board ";
   conn.query(sql, function (err, result) {
-    if (err) console.log("query is not excuted: " + err);
+    if (err) console.log("query is 000 not excuted: " + err);
     else {
       var sql =
         "insert into board (bnum,id,title,content,writedate) values(?,?,?,?,NOW())";
       var params = [result[0].bnum, body.id, body.title, body.content];
       conn.query(sql, params, function (err) {
-        if (err) console.log("query is not excuted: " + err);
+        if (err) {
+             console.log("query is not 111excuted: " + err);
+             console.log("bnum: " + result[0].bnum);
+             console.log("id: " + body.id);
+             console.log("title: " +  body.title);
+        }
         else if (req.file != null) {
           // 만약 업로드 된 파일이 있다면
           var sql =
             "insert into file (bnum,savefile,filetype,writedate) values (?,?,?,now())";
-          var params = [body.bnum, req.file.originalname, req.file.mimetype];
+          var params = [result[0].bnum, req.file.originalname, req.file.mimetype];
           conn.query(sql, params, function (err) {
-            if (err) console.log("query is not excuted: " + err);
+            if (err) console.log("query is 222 not excuted: " + err);
             else res.sendStatus(200);
           });
         } else res.sendStatus(200);
