@@ -322,6 +322,7 @@ NODE_ENV=development node webApp.js
 운영에서 실행 
 NODE_ENV=production node webApp.js
 
+ nohup env NODE_ENV=production /home/ubuntu/.nvm/versions/node/v22.9.0/bin/node webApp.js
 
 
 
