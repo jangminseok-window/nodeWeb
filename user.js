@@ -1,32 +1,61 @@
+const logger = require('./log');
 const express = require('express');
 const router = express.Router();
-const db = require('./config/mysqlConn.js');
+const db = require('./config/mysqlConn');
+const cryptoUtil = require('./crypto/cryptoutil');
 
 const conn = db.init();
 
 // 사용자 등록
-router.post('/register', function(req, res) {
-  const { username, password, email } = req.body;
-  const sql = 'INSERT INTO users (username, password, email) VALUES (?, ?, ?)';
-  conn.query(sql, [username, password, email], function(err, result) {
-    if (err) {
-      console.log('Query error: ' + err);
-      return res.status(500).json({ error: 'Internal Server Error' });
+router.post('/register', async function(req, res) {
+  try {
+    const { id, pwd, name, email } = req.body;
+
+    // 입력 값 검증
+    if (!id || !pwd || !name || !email) {
+      return res.status(400).json({ error: 'All fields are required' });
     }
-    res.status(201).json({ message: 'User registered successfully', userId: result.insertId });
-  });
+
+    // 비밀번호 해시화
+    const hashedPwd = await cryptoUtil.hashPassword(pwd);
+
+    logger.info(`Hashed password for user ${id}`);
+
+    const sql = 'INSERT INTO users (id, pwd, name, email) VALUES (?, ?, ?, ?)';
+    conn.query(sql, [id, hashedPwd, name, email], function(err, result) {
+      if (err) {
+        logger.error('Query error: ' + err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+      res.status(201).json({ message: 'User registered successfully', id: result.insertId });
+    });
+  } catch (error) {
+    logger.error('Error in user registration: ' + error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
+
 // 사용자 정보 조회
-router.get('/:userId', function(req, res) {
-  const sql = 'SELECT id, username, email FROM users WHERE id = ?';
-  conn.query(sql, [req.params.userId], function(err, result) {
+router.get('/view/:userId', function(req, res) {
+  const userId = req.params.userId; // 'userId'로 변경
+
+  // SQL 인젝션 방지를 위해 pwd 필드 제외
+  const sql = 'SELECT id, name, email FROM users WHERE id = ?';
+
+  conn.query(sql, [userId], function(err, result) {
+    logger.info('Query ID: ' + userId);
+
     if (err) {
-      console.log('Query error: ' + err);
+      logger.error('Query error: ' + err); // 'error'로 변경
       return res.status(500).json({ error: 'Internal Server Error' });
     }
+
     if (result.length > 0) {
-      res.status(200).json(result[0]);
+      const user = result[0];
+      // 민감한 정보 제거
+      delete user.pwd;
+      res.status(200).json(user);
     } else {
       res.status(404).json({ error: 'User not found' });
     }
@@ -34,7 +63,7 @@ router.get('/:userId', function(req, res) {
 });
 
 // 사용자 정보 수정
-router.put('/:userId', function(req, res) {
+router.get('/update/:userId', function(req, res) {
   const { email } = req.body;
   const sql = 'UPDATE users SET email = ? WHERE id = ?';
   conn.query(sql, [email, req.params.userId], function(err, result) {
@@ -47,7 +76,7 @@ router.put('/:userId', function(req, res) {
 });
 
 // 사용자 삭제
-router.delete('/:userId', function(req, res) {
+router.get('/delete/:userId', function(req, res) {
   const sql = 'DELETE FROM users WHERE id = ?';
   conn.query(sql, [req.params.userId], function(err, result) {
     if (err) {

@@ -1,11 +1,15 @@
+const config = require('config');
+const dbConfig = config.get('db');
+
+
 var mysql = require("mysql2");
 var db_info = {
  // host: "localhost",
-  host: "43.201.220.132",
-  port: "3306",
-  user: "midstar",
-  password: "dlalwjd5",
-  database: "midstardb",
+  host: dbConfig.host,  //"43.201.220.132"
+  port:  "3306",
+  user:  dbConfig.user ,//"midstar",
+  password:  dbConfig.password,//"dlalwjd5",
+  database: dbConfig.database,//"midstardb",
 };
 
 module.exports = {

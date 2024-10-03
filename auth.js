@@ -1,24 +1,53 @@
 const express = require('express');
 const router = express.Router();
 const db = require('./config/mysqlConn.js');
-
+const cryptoUtil = require('./crypto/cryptoutil');
+const logger = require('./log');
 const conn = db.init();
 
 // 로그인
-router.post('/login', function(req, res) {
-  const { username, password } = req.body;
-  const sql = 'SELECT * FROM users WHERE username = ? AND password = ?';
-  conn.query(sql, [username, password], function(err, result) {
-    if (err) {
-      console.log('Query error: ' + err);
-      return res.status(500).json({ error: 'Internal Server Error' });
+router.post('/login', async function(req, res) {
+  try {
+    const { username, password } = req.body;
+
+    // 입력 검증
+    if (!username || !password) {
+      return res.status(400).json({ error: 'Username and password are required' });
     }
-    if (result.length > 0) {
-      res.status(200).json({ message: 'Login successful', user: result[0] });
-    } else {
-      res.status(401).json({ error: 'Invalid credentials' });
-    }
-  });
+
+    // 사용자 조회
+    const sql = 'SELECT * FROM users WHERE id = ?';
+    conn.query(sql, [username], async function(err, results) {
+      if (err) {
+        logger.error('Query error: ' + err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+
+      if (results.length === 0) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+
+      const user = results[0];
+
+      // 비밀번호 검증
+      const isMatch = await cryptoUtil.comparePassword(password, user.pwd);
+
+      if (isMatch) {
+        // 비밀번호 일치
+       // const { pwd, ...userWithoutPassword } = user;
+        // 세션에 사용자 정보 저장 (세션 미들웨어가 설정되어 있다고 가정)
+       // req.session.user = userWithoutPassword;
+       // res.status(200).json({ message: 'Login successful', user: userWithoutPassword });
+       res.status(200).json({ message: 'Login successful'});
+      } else {
+        // 비밀번호 불일치
+        res.status(401).json({ error: 'Invalid credentials' });
+      }
+    });
+  } catch (error) {
+    logger.error('Login error: ' + error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 // 로그아웃 (세션 기반 인증을 사용한다고 가정)
