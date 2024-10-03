@@ -333,6 +333,12 @@ cron 등록
 0 0 * * * /home/ubuntu/nodeWeb/log_rotation_script.sh 
 
 2.winston 라이브러리 사용
+-- 로그 파일 남김
+
+--- API 프로젝트시 자동 문서화 기능 --  
+ Node.js 프로젝트에서 Swagger를 사용하여 API 문서를 자동으로 생성하고 관리
+
+
 
 
 
