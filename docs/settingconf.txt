@@ -1,3 +1,5 @@
+cd "C:\Users\TOURSOFT\Google 드라이브\git-hup\nodeWeb"
+
 aws 로그인 
 midstar@naver.com !Dl~~~
 이름:jang minseok
@@ -286,11 +288,40 @@ D:\ngrok>ngrok config add-authtoken 2moraT9n2a114QOYK7tHExe8bwX_4QC6pzUv785E2gLn
 Authtoken saved to configuration file: C:\Users\TOURSOFT\AppData\Local/ngrok/ngrok.yml
 Forwarding  https://4e07-112-217-239-226.ngrok-free.app -> http://localhost:8080 
 
+jangminseok-window/nodeWeb --> setting --> webhook 설정해야함.
+
+
 jenkins openssh 서버에서 aws 접속하려면 
 ssh -i C:\Users\toursoft\.ssh\ubuntu-micro.pem ubuntu@ec2-3-39-228-155.ap-northeast-2.compute.amazonaws.com
 파일인데  ppk로 만들어진 privatekey를 puttyken를 이용해서 pem 형식의 publickey  변환해야함
 
                                                                                                                                                                                                                                                               Help shape K8s Bindings https://ngrok.com/new-features-update?ref=k8s                                                                                                                                                                                                                                 Session Status                online                                                                                                               Account                       midstar.jang@gmail.com (Plan: Free)                                                                                  Version                       3.16.0                                                                                                               Region                        Japan (jp)                                                                                                           Latency                       41ms                                                                                                                 Web Interface                 http://127.0.0.1:4040                                                                                                Forwarding                    https://4e07-112-217-239-226.ngrok-free.app -> http://localhost:8080                                                                                                                                                                                                    Connections                   ttl     opn     rt1     rt5     p50     p90                                                                                                        0       0       0.00    0.00    0.00    0.00                                                                                                                                                                       
+
+-- 개발환경/운영환경 다른 변수 활용 --
+환경 변수를 사용하면, 동일한 코드를 유지하면서도 각기 다른 환경에서 설정값을 변경할 수 있습니다.
+
+1.1 .env 파일 설정
+dotenv 패키지를 사용하여 환경 변수를 설정할 수 있습니다.
+
+dotenv 패키지 설치: npm install dotenv
+
+개발환경에서 node -r dotenv/config webApp.js 실행
+운영환경에서 NODE_ENV=production node -r dotenv/config webApp.js 실행
+
+1.2 .config  설정
+npm install config
+
+윈두우 OS 
+set NODE_ENV=development && node webApp.js
+
+$env:NODE_ENV="development"; node webApp.js
+$env:NODE_ENV="production"; node webApp.js
+
+개발에서 실행
+NODE_ENV=development node webApp.js
+운영에서 실행 
+NODE_ENV=production node webApp.js
+
 
 
 

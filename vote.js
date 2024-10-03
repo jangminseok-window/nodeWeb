@@ -5,7 +5,7 @@ const db = require('./config/mysqlConn.js');
 const conn = db.init();
 
 // 로그인
-router.post('/insert', function(req, res) {
+router.get('/insert', function(req, res) {
    console.log('voting call ');
   
 });

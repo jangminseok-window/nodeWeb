@@ -1,0 +1,13 @@
+{
+    "db": {
+      "host": "localhost",
+      "user": "midstar",
+      "password": "dlalwjd5",
+      "database" : "midstardb"
+    },
+    "server": {
+      "port": 3000
+    }
+  }
+  
+  

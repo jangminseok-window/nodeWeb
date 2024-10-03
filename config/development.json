@@ -1,0 +1,12 @@
+{
+    "db": {
+      "host": "43.201.220.132",
+      "user": "midstar",
+      "password": "dlalwjd5",
+      "database" : "midstardb"
+    },
+    "server": {
+      "port": 8081
+    }
+  }
+  
