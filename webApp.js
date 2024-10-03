@@ -1,23 +1,12 @@
 
-//.env 쓰는경우 --> config 파일사용
-//require('dotenv').config();
-//const dbHost = process.env.DB_HOST;
-//const dbUser = process.env.DB_USER;
-//const dbPass = process.env.DB_PASS;
-//const nodePort = process.env.NODE_PORT;
-
-//console.log(`DB Host: ${dbHost}`);
-//console.log(`DB User: ${dbUser}`);
-//console.log(`Node Port: ${nodePort}`);
-
+const logger = require('./log');
 const config = require('config');
 
 const dbConfig = config.get('db');
 const serverConfig = config.get('server');
 
-console.log(`DB Host: ${dbConfig.host}`);
-console.log(`DB User: ${dbConfig.user}`);
-
+logger.info(`web DB Host: ${dbConfig.host}`);
+logger.info(`DB User: ${dbConfig.user}`);
 
 
 

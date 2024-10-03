@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const fs = require("fs");
 const db = require("./config/mysqlConn.js");
+const logger = require('./log');
 
 const conn = db.init();
 const upload = multer({
@@ -20,6 +21,7 @@ const upload = multer({
 
 // 게시글 목록 보기
 router.get("/view", function (req, res) {
+  logger.info("board - view action start!!");
   var sql = "SELECT * FROM board";
   conn.query(sql, function (err, result) {
     if (err) {

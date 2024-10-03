@@ -323,6 +323,19 @@ NODE_ENV=development node webApp.js
 NODE_ENV=production node webApp.js
 
  nohup env NODE_ENV=production /home/ubuntu/.nvm/versions/node/v22.9.0/bin/node webApp.js
+-- 로그 남기는 법 --
+
+1.로그 로테이션 스크립트 사용:
+날짜별로 로그 파일을 분리하려면 로그 로테이션(log rotation) 기능을 사용함
+
+log_rotation_script.sh 실행
+cron 등록
+0 0 * * * /home/ubuntu/nodeWeb/log_rotation_script.sh 
+
+2.winston 라이브러리 사용
+
+
+
 
 
 
