@@ -2,3 +2,4 @@
 pkill -f "node webApp.js"
 cd /home/ubuntu/nodeWeb
 npm ci
+npm install

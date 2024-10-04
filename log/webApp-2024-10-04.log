@@ -20,3 +20,49 @@
 {"level":"info","message":"Hashed password for user testuser22244awsss","timestamp":"2024-10-04 14:33:57"}
 {"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 15:42:40"}
 {"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 15:42:40"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:07:36"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:07:36"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:07:58"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:07:58"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:09:04"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:09:04"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:10:59"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:10:59"}
+{"level":"error","message":"Error executing query: (intermediate value) is not iterable","stack":"TypeError: (intermediate value) is not iterable\n    at C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\user.js:53:20\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-10-04 20:11:06"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:12:33"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:12:33"}
+{"level":"error","message":"Error executing query: (intermediate value) is not iterable","stack":"TypeError: (intermediate value) is not iterable\n    at C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\user.js:53:20\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-10-04 20:12:37"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:13:23"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:13:23"}
+{"0":{"birthday":{"data":[232,10,78,175,186,180,206,114,41,2,14,108,112,125,214,184],"type":"Buffer"},"email":"testuser@example.com","id":"testuser22244","name":"Test User","pwd":"$2b$10$0JgvzgZK6f5G5FfUaBmVuOzuyCsMa3tEj6tY27JJfUsLOUjySGV9S","unum":6,"writedate":"2024-10-04T04:49:57.000Z"},"level":"info","message":"Query results:","timestamp":"2024-10-04 20:13:29"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:23:33"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:23:33"}
+{"level":"error","message":"Error executing query: (intermediate value) is not iterable","stack":"TypeError: (intermediate value) is not iterable\n    at C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\user.js:54:20\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-10-04 20:23:37"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:25:00"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:25:00"}
+{"level":"error","message":"Error executing query: (intermediate value) is not iterable","stack":"TypeError: (intermediate value) is not iterable\n    at C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\user.js:54:20\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-10-04 20:25:05"}
+{"level":"error","message":"Error executing query: (intermediate value) is not iterable","stack":"TypeError: (intermediate value) is not iterable\n    at C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\user.js:54:20\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-10-04 20:25:07"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:31:52"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:31:52"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:33:12"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:33:12"}
+{"level":"error","message":"Error executing query: ogger is not defined","stack":"ReferenceError: ogger is not defined\n    at C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\user.js:20:5\n    at Layer.handle [as handle_request] (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\index.js:421:3)\n    at next (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\index.js:280:10)","timestamp":"2024-10-04 20:33:27"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:33:45"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:33:45"}
+{"level":"info","message":"userId xxx:","timestamp":"2024-10-04 20:33:49"}
+{"level":"info","message":"userId xxx:","timestamp":"2024-10-04 20:36:08"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:38:40"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:38:40"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-04 20:38:45"}
+{"level":"info","message":"Executing query:","timestamp":"2024-10-04 20:38:45"}
+{"level":"error","message":"Error executing query: Bind parameters must be array if namedPlaceholders parameter is not enabled","stack":"Error: Bind parameters must be array if namedPlaceholders parameter is not enabled\n    at PromisePool.execute (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\mysql2\\promise.js:374:22)\n    at C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\user.js:32:31\n    at Layer.handle [as handle_request] (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\index.js:376:14)\n    at Function.process_params (C:\\Users\\TOURSOFT\\Google 드라이브\\git-hup\\nodeWeb\\node_modules\\express\\lib\\router\\index.js:421:3)","timestamp":"2024-10-04 20:38:46"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:40:39"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:40:39"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-04 20:40:43"}
+{"level":"info","message":"Executing query:","timestamp":"2024-10-04 20:40:43"}
+{"0":{"birthday":{"data":[232,10,78,175,186,180,206,114,41,2,14,108,112,125,214,184],"type":"Buffer"},"email":"testuser@example.com","id":"testuser22244","name":"Test User","pwd":"$2b$10$0JgvzgZK6f5G5FfUaBmVuOzuyCsMa3tEj6tY27JJfUsLOUjySGV9S","unum":6,"writedate":"2024-10-04T04:49:57.000Z"},"level":"info","message":"Query results:","timestamp":"2024-10-04 20:40:43"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 20:48:36"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 20:48:36"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-04 20:48:42"}
+{"level":"info","message":"Executing query:","timestamp":"2024-10-04 20:48:42"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-04 20:48:42"}

@@ -1,25 +1,34 @@
 const config = require('config');
 const dbConfig = config.get('db');
+const mysql = require("mysql2/promise");
 
-
-var mysql = require("mysql2");
-var db_info = {
- // host: "localhost",
-  host: dbConfig.host,  //"43.201.220.132"
-  port:  "3306",
-  user:  dbConfig.user ,//"midstar",
-  password:  dbConfig.password,//"dlalwjd5",
-  database: dbConfig.database,//"midstardb",
+const db_info = {
+  host: dbConfig.host,
+  port: "3306",
+  user: dbConfig.user,
+  password: dbConfig.password,
+  database: dbConfig.database,
+  connectionLimit: 10 // 연결 풀의 최대 연결 수
 };
+
+let pool;
 
 module.exports = {
   init: function () {
-    return mysql.createConnection(db_info);
+    if (!pool) {
+      pool = mysql.createPool(db_info);
+    }
+    return pool;
   },
-  connect: function (conn) {
-    conn.connect(function (err) {
-      if (err) console.error("mysql connection error : " + err);
-      else console.log("mysql is connected successfully!");
-    });
-  },
+  connect: async function () {
+    try {
+      const connection = await pool.getConnection();
+      console.log("MySQL pool connected successfully!");
+      connection.release();
+      return pool;
+    } catch (err) {
+      console.error("MySQL pool connection error:", err);
+      throw err;
+    }
+  }
 };
