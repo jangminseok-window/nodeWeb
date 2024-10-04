@@ -3,7 +3,6 @@
 # Node.js 애플리케이션 재시작
 pkill -f "node webApp.js"
 cd /home/ubuntu/nodeWeb
-npm install
 # nohup env NODE_ENV=production /home/ubuntu/.nvm/versions/node/v22.9.0/bin/node webApp.js > webApp.log 2>&1 &
 nohup env NODE_ENV=production /home/ubuntu/.nvm/versions/node/v22.9.0/bin/node webApp.js > /dev/null 2>&1 &
 
