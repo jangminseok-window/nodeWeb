@@ -1,15 +1,20 @@
+const config = require('config');
+const dbConfig = config.get('db');
+
 const logger = require('./log');
 const express = require('express');
 const router = express.Router();
 const db = require('./config/mysqlConn');
 const cryptoUtil = require('./crypto/cryptoutil');
 
+const my_secret_key =  dbConfig.secretkey;
+
 const conn = db.init();
 
 // 사용자 등록
 router.post('/register', async function(req, res) {
   try {
-    const { id, pwd, name, email } = req.body;
+    const { id, pwd, name, email ,birthday} = req.body;
 
     // 입력 값 검증
     if (!id || !pwd || !name || !email) {
@@ -20,9 +25,9 @@ router.post('/register', async function(req, res) {
     const hashedPwd = await cryptoUtil.hashPassword(pwd);
 
     logger.info(`Hashed password for user ${id}`);
-
-    const sql = 'INSERT INTO users (id, pwd, name, email) VALUES (?, ?, ?, ?)';
-    conn.query(sql, [id, hashedPwd, name, email], function(err, result) {
+    
+    const sql = `INSERT INTO users (id, pwd, name, email, birthday) VALUES (?, ?, ?, ?, AES_ENCRYPT(?, ?))`;
+    conn.query(sql, [id, hashedPwd, name, email,birthday,my_secret_key], function(err, result) {
       if (err) {
         logger.error('Query error: ' + err);
         return res.status(500).json({ error: 'Internal Server Error' });
@@ -41,9 +46,9 @@ router.get('/view/:userId', function(req, res) {
   const userId = req.params.userId; // 'userId'로 변경
 
   // SQL 인젝션 방지를 위해 pwd 필드 제외
-  const sql = 'SELECT id, name, email FROM users WHERE id = ?';
+  const sql = `SELECT id, name, email , CAST(AES_DECRYPT(birthday, ?) AS CHAR) AS birthday FROM users WHERE id = ?`;
 
-  conn.query(sql, [userId], function(err, result) {
+  conn.query(sql, [my_secret_key,userId], function(err, result) {
     logger.info('Query ID: ' + userId);
 
     if (err) {

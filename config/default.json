@@ -3,7 +3,8 @@
       "host": "localhost",
       "user": "defaultUser",
       "password": "defaultPassword",
-      "database" : "midstardb"
+      "database" : "midstardb",
+       "secretkey" : "xxxxwkdalstjr"
     },
     "server": {
       "port": 3000
