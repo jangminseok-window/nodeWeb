@@ -54,6 +54,46 @@ ec2-43-203-244-204.ap-northeast-2.compute.amazonaws.com
 sudo apt install apache2 -y   # Ubuntu
 sudo systemctl start apache2   # Ubuntu
 ----------------------------------------
+---------------------------
+apache nodejs 연동
+---------------------------
+Apache와 Node.js를 연동하여 특정 경로(예: /api)의 요청을 Node.js 애플리케이션으로 전달하는 방법을 설명해드리겠습니다:
+Apache 모듈 활성화:
+먼저, 필요한 Apache 모듈을 활성화합니다.
+text
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+
+Apache 설정 파일 수정:
+/etc/apache2/sites-available 디렉토리의 해당 사이트 설정 파일(예: 000-default.conf)을 수정합니다.
+text
+sudo nano /etc/apache2/sites-available/000-default.conf
+
+프록시 설정 추가:
+VirtualHost 블록 내에 다음 설정을 추가합니다.
+text
+<VirtualHost *:80>
+    # 기존 설정들...
+
+    ProxyRequests Off
+    ProxyPreserveHost On
+    ProxyVia Full
+
+    <Proxy *>
+        Require all granted
+    </Proxy>
+
+    ProxyPass /api http://localhost:3000
+    ProxyPassReverse /api http://localhost:3000
+
+    # 기타 설정들...
+</VirtualHost>
+
+여기서 http://localhost:3000은 Node.js 애플리케이션이 실행되는 주소와 포트입니다.
+------------------------------------
+
+
+
 sudo su -- root 권한 변경
 ---ftp 관련 ---
 sudo systemctl restart vsftpd  ftp 시작
@@ -61,7 +101,7 @@ sudo adduser ftpuser
 sudo passwd ftpuser
 
 sudo nano /etc/vsftpd.conf
-pasv_address=43.201.53.18
+pasv_address=43.201.220.132
 pasv_enable=YES
 pasv_min_port=1024
 pasv_max_port=1048
