@@ -18,3 +18,5 @@
 {"level":"info","message":"Hashed password for user testuser22244","timestamp":"2024-10-04 14:33:43"}
 {"level":"error","message":"Query error: Error: Duplicate entry 'testuser22244' for key 'users.unique_id'","timestamp":"2024-10-04 14:33:43"}
 {"level":"info","message":"Hashed password for user testuser22244awsss","timestamp":"2024-10-04 14:33:57"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-04 15:42:40"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-04 15:42:40"}
