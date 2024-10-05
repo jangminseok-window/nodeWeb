@@ -45,3 +45,52 @@
 {"level":"info","message":"session key: a7f3b825-08b3-49a6-b087-989224b844c1","timestamp":"2024-10-05 11:31:20"}
 {"level":"info","message":"Executing query:","timestamp":"2024-10-05 11:31:20"}
 {"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 11:31:20"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 13:23:01"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 13:23:01"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 13:23:05"}
+{"level":"info","message":"sessionVal xxx: 1a58d397-030c-4f7e-9194-e054c94933cb","timestamp":"2024-10-05 13:23:05"}
+{"level":"info","message":"session time: 1728102185602","timestamp":"2024-10-05 13:23:05"}
+{"level":"info","message":"session key: 1a58d397-030c-4f7e-9194-e054c94933cb","timestamp":"2024-10-05 13:23:05"}
+{"level":"info","message":"Executing query:","timestamp":"2024-10-05 13:23:05"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 13:23:05"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 13:23:18"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 13:23:18"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 13:23:22"}
+{"level":"info","message":"sessionVal xxx: a5231f79-101b-4c68-8bc4-fe4bc51f4e08","timestamp":"2024-10-05 13:23:22"}
+{"level":"info","message":"session time: 1728102202956","timestamp":"2024-10-05 13:23:22"}
+{"level":"info","message":"session key: a5231f79-101b-4c68-8bc4-fe4bc51f4e08","timestamp":"2024-10-05 13:23:22"}
+{"level":"info","message":"Executing query111:","timestamp":"2024-10-05 13:23:22"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 13:23:23"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 13:23:50"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 13:23:50"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 13:23:55"}
+{"level":"info","message":"sessionVal xxx: d82d09d4-d448-4cd1-ab83-691565ea02ca","timestamp":"2024-10-05 13:23:55"}
+{"level":"info","message":"session time: 1728102235487","timestamp":"2024-10-05 13:23:55"}
+{"level":"info","message":"session key: d82d09d4-d448-4cd1-ab83-691565ea02ca","timestamp":"2024-10-05 13:23:55"}
+{"level":"info","message":"Executing 22query: \r\n    SELECT unum,id,name, email , CAST(AES_DECRYPT(birthday, 'xxxxwkdalstjr') AS CHAR) AS birthday  FROM users WHERE id = 'testuser22244'\r\n  ","timestamp":"2024-10-05 13:23:55"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 13:23:55"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 13:35:38"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 13:35:38"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 13:35:43"}
+{"level":"info","message":"sessionVal xxx: 42d62732-76f6-41d1-90d2-708101842858","timestamp":"2024-10-05 13:35:43"}
+{"level":"info","message":"session time: 1728102943068","timestamp":"2024-10-05 13:35:43"}
+{"level":"info","message":"session key: 42d62732-76f6-41d1-90d2-708101842858","timestamp":"2024-10-05 13:35:43"}
+{"level":"info","message":"Executing query for userMapper.selectById: \r\n    SELECT unum,id,name, email , CAST(AES_DECRYPT(birthday, 'xxxxwkdalstjr') AS CHAR) AS birthday  FROM users WHERE id = 'testuser22244'\r\n  ","timestamp":"2024-10-05 13:35:43"}
+{"level":"info","message":"Executing 22query: \r\n    SELECT unum,id,name, email , CAST(AES_DECRYPT(birthday, 'xxxxwkdalstjr') AS CHAR) AS birthday  FROM users WHERE id = 'testuser22244'\r\n  ","timestamp":"2024-10-05 13:35:43"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 13:35:43"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 13:55:51"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 13:55:51"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 13:55:55"}
+{"level":"info","message":"sessionVal xxx: e21ae0d5-47dd-438d-9d76-72974ff5ff50","timestamp":"2024-10-05 13:55:55"}
+{"level":"info","message":"session time: 1728104155794","timestamp":"2024-10-05 13:55:55"}
+{"level":"info","message":"session key: e21ae0d5-47dd-438d-9d76-72974ff5ff50","timestamp":"2024-10-05 13:55:55"}
+{"level":"debug","message":"Executing query for userMapper.selectById: \r\n    SELECT unum,id,name, email , CAST(AES_DECRYPT(birthday, 'xxxxwkdalstjr') AS CHAR) AS birthday  FROM users WHERE id = 'testuser22244'\r\n  ","timestamp":"2024-10-05 13:55:55"}
+{"level":"info","message":"Executing 22query: \r\n    SELECT unum,id,name, email , CAST(AES_DECRYPT(birthday, 'xxxxwkdalstjr') AS CHAR) AS birthday  FROM users WHERE id = 'testuser22244'\r\n  ","timestamp":"2024-10-05 13:55:55"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 13:55:55"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 13:56:43"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 13:56:43"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 13:56:46"}
+{"level":"info","message":"sessionVal xxx: fe65a81e-b806-402e-923f-d574fa336861","timestamp":"2024-10-05 13:56:46"}
+{"level":"info","message":"session time: 1728104206883","timestamp":"2024-10-05 13:56:46"}
+{"level":"info","message":"session key: fe65a81e-b806-402e-923f-d574fa336861","timestamp":"2024-10-05 13:56:46"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 13:56:46"}

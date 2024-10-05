@@ -1,8 +1,12 @@
 const winston = require('winston');
 require('winston-daily-rotate-file');
+const config = require('config');
+
+// config에서 로그 레벨 가져오기
+const logLevel = config.get('logLevel') || 'info';
 
 const logger = winston.createLogger({
-  level: 'info',
+  level: logLevel, // 여기서 config에서 가져온 로그 레벨 사용
   format: winston.format.combine(
     winston.format.timestamp({
       format: 'YYYY-MM-DD HH:mm:ss'

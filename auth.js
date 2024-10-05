@@ -1,9 +1,22 @@
-const express = require('express');
-const router = express.Router();
-const db = require('./config/mysqlConn.js');
-const cryptoUtil = require('./crypto/cryptoutil');
-const logger = require('./log');
-const conn = db.init();
+// router 는 제외하고 정의
+const {  
+  config,
+  dbConfig,
+  logger,
+  express,
+  db,
+  cryptoUtil,
+  mybatisMapper,
+  my_secret_key,
+  pool,
+  serverConfig,
+  bodyParser,
+  cors
+      }  = require('./app-contex');
+
+
+//각각의 router 정의하고 session 값등 req에 필요한 부분처리
+const router = require('express').Router();
 
 // 로그인
 router.post('/login', async function(req, res) {

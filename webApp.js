@@ -25,9 +25,15 @@ const app = express();
 // 세션 관리를 위한 객체
 const sessions = {};
 
+
+
+
 app.use((req, res, next) => {
   const sessionVal = uuidv4();
-  sessions[sessionVal] = { key:sessionVal , timestamp: Date.now() };
+  const expirationTime = Date.now() + serverConfig.sessionTimeout * 60 * 1000; 
+  sessions[sessionVal] = {  key:sessionVal 
+                          , timestamp: Date.now() 
+                          , expiresAt: expirationTime};
   req.common = {
     sessionVal: sessionVal,
     sessions: sessions
@@ -39,7 +45,7 @@ app.use((req, res, next) => {
 
 
 //const boardRoutes = require('./board');
-//const authRoutes = require('./auth');
+const authRoutes = require('./auth');
 const userRoutes = require('./user');
 //const voteRoutes = require('./vote');
 
@@ -52,7 +58,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // 라우트 연결
 //app.use('/board', boardRoutes);
-//app.use('/auth', authRoutes);
+app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 //app.use('/vote', voteRoutes);
 

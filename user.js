@@ -39,9 +39,8 @@ router.get('/view/:userId', async function(req, res) {
 
     const params = { id: userId, secretkey: my_secret_key };
     const query = mybatisMapper.getStatement('userMapper', 'selectById', params);
-
-    logger.info('Executing query:', query);
-
+    //logger.info(`Executing 22query: ${query}`);
+    
     const [rows] = await pool.execute(query, [userId, my_secret_key]);
 
     if (rows.length === 0) {

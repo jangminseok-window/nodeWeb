@@ -7,7 +7,7 @@ const logger = require('./log');
 const express = require('express');
 const db = require('./config/mysqlConn');
 const cryptoUtil = require('./crypto/cryptoutil');
-const mybatisMapper = require('mybatis-mapper');
+const mybatisMapper = require('./mybatis-wrapper');
 
 const my_secret_key = dbConfig.secretkey;
 const pool = db.init();
