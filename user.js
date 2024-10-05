@@ -20,10 +20,17 @@ const router = require('express').Router();
 router.get('/view/:userId', async function(req, res) {
   try {
 
-    
+    const { sessionVal } = req.common;
+    const { sessions } = req.common;
+    const userSession = sessions[sessionVal];
     const userId = req.params.userId;
-
+    
     logger.info(`userId xxx: ${userId}`);
+    logger.info(`sessionVal xxx: ${sessionVal}`);
+    logger.info(`session time: ${userSession.timestamp}`);
+    logger.info(`session key: ${userSession.key}`);
+    
+
 
     // 입력 검증
     if (!userId || userId.trim() === '') {

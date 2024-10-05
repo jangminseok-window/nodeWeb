@@ -10,3 +10,38 @@
 {"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 09:53:07"}
 {"level":"info","message":"Executing query:","timestamp":"2024-10-05 09:53:07"}
 {"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 09:53:07"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 10:03:38"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 10:03:38"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 10:04:01"}
+{"level":"info","message":"sessionVal xxx: sessionval","timestamp":"2024-10-05 10:04:01"}
+{"level":"info","message":"Executing query:","timestamp":"2024-10-05 10:04:01"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 10:04:02"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 11:08:41"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 11:08:41"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 11:08:47"}
+{"level":"info","message":"sessionVal xxx: sessionval","timestamp":"2024-10-05 11:08:47"}
+{"level":"info","message":"Executing query:","timestamp":"2024-10-05 11:08:47"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 11:08:47"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 11:09:26"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 11:09:26"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 11:09:31"}
+{"level":"info","message":"sessionVal xxx: 57adae37-1663-428c-90cc-6c446ce69a10","timestamp":"2024-10-05 11:09:31"}
+{"level":"info","message":"Executing query:","timestamp":"2024-10-05 11:09:31"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 11:09:31"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 11:22:26"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 11:22:26"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 11:30:10"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 11:30:10"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 11:30:15"}
+{"level":"info","message":"sessionVal xxx: 249c58ae-a24e-4a27-8c8b-d46c12edaeb7","timestamp":"2024-10-05 11:30:15"}
+{"level":"info","message":"session time: 1728095415574","timestamp":"2024-10-05 11:30:15"}
+{"level":"info","message":"Executing query:","timestamp":"2024-10-05 11:30:15"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 11:30:15"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 11:31:17"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 11:31:17"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 11:31:20"}
+{"level":"info","message":"sessionVal xxx: a7f3b825-08b3-49a6-b087-989224b844c1","timestamp":"2024-10-05 11:31:20"}
+{"level":"info","message":"session time: 1728095480613","timestamp":"2024-10-05 11:31:20"}
+{"level":"info","message":"session key: a7f3b825-08b3-49a6-b087-989224b844c1","timestamp":"2024-10-05 11:31:20"}
+{"level":"info","message":"Executing query:","timestamp":"2024-10-05 11:31:20"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 11:31:20"}

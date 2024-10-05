@@ -15,10 +15,25 @@ const {
   cors
       }  = require('./app-contex');
 
-
+const { v4: uuidv4 } = require('uuid'); // UUID 생성을 위해 추가
 
 logger.info(`web DB Host: ${dbConfig.host}`);
 logger.info(`DB User: ${dbConfig.user}`);
+
+const app = express();
+// sesseion 값을 req저장해서 사용함
+// 세션 관리를 위한 객체
+const sessions = {};
+
+app.use((req, res, next) => {
+  const sessionVal = uuidv4();
+  sessions[sessionVal] = { key:sessionVal , timestamp: Date.now() };
+  req.common = {
+    sessionVal: sessionVal,
+    sessions: sessions
+  };
+  next();
+});
 
 
 
@@ -28,7 +43,7 @@ logger.info(`DB User: ${dbConfig.user}`);
 const userRoutes = require('./user');
 //const voteRoutes = require('./vote');
 
-const app = express();
+
 
 
 app.use(cors());
