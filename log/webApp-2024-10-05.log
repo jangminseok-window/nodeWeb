@@ -1,0 +1,12 @@
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 09:35:49"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 09:35:49"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 09:36:50"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 09:36:50"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 09:37:04"}
+{"level":"info","message":"Executing query:","timestamp":"2024-10-05 09:37:04"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 09:37:05"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 09:52:59"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 09:52:59"}
+{"level":"info","message":"userId xxx: testuser22244","timestamp":"2024-10-05 09:53:07"}
+{"level":"info","message":"Executing query:","timestamp":"2024-10-05 09:53:07"}
+{"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 09:53:07"}
