@@ -11,7 +11,8 @@ const {
   pool,
   serverConfig,
   bodyParser,
-  cors
+  cors,
+  getRedisPool
       }  = require('./app-contex');
 
 //각각의 router 정의하고 session 값등 req에 필요한 부분처리
@@ -30,6 +31,18 @@ router.get('/view/:userId', async function(req, res) {
     logger.info(`session time: ${userSession.timestamp}`);
     logger.info(`session key: ${userSession.key}`);
     
+    const redisPool = getRedisPool(); // 이미 생성된 pool
+
+    try {
+      await redisPool.set('test-key', 'Hello from Redis1111');
+      const value = await redisPool.get('test-key');
+      //res.json(value);
+      logger.info(`redisPool test-key: ${value}`);
+    
+    } catch (error) {
+      //res.status(500).json('Redis error');
+      logger.info(`redis error`);
+    }
 
 
     // 입력 검증

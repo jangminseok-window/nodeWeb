@@ -12,7 +12,9 @@ const {
   router,
   serverConfig,
   bodyParser,
-  cors
+  cors,
+  getRedisPool
+ 
   }  = require('./app-contex');
 
 const { v4: uuidv4 } = require('uuid'); // UUID 생성을 위해 추가

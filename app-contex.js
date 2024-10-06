@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const config = require('config');
 const dbConfig = config.get('db');
+const redisConfig = config.get('redis');
 const serverConfig = config.get('server');
 const logger = require('./log');
 const express = require('express');
@@ -16,6 +17,10 @@ const router = express.Router();
 
 mybatisMapper.createMapper(['./sql/user.xml']);
 
+const { initRedisPool, getRedisPool } = require('./config/redisConn');
+
+initRedisPool();
+
 module.exports = {
   config,
   dbConfig,
@@ -29,5 +34,7 @@ module.exports = {
   router,
   serverConfig,
   bodyParser,
-  cors
+  cors,
+  getRedisPool
+
 };
