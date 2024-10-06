@@ -94,3 +94,19 @@
 {"level":"info","message":"session time: 1728104206883","timestamp":"2024-10-05 13:56:46"}
 {"level":"info","message":"session key: fe65a81e-b806-402e-923f-d574fa336861","timestamp":"2024-10-05 13:56:46"}
 {"0":{"birthday":"19720101","email":"testuser@example.com","id":"testuser22244","name":"Test User","unum":6},"level":"info","message":"Query results:","timestamp":"2024-10-05 13:56:46"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 14:22:19"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 14:22:19"}
+{"0":{"birthday":null,"email":"testuser@example.com","id":"testuser222","name":"Test User","pwd":"$2b$10$gwY.z4Fvi6Xafh9R5SDygO3r9k1WYCYWm3ng0kg5FD/QxvzIndVqC","unum":4},"level":"info","message":"Query results:","timestamp":"2024-10-05 14:22:42"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 14:23:24"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 14:23:24"}
+{"level":"debug","message":"Executing query for userMapper.selectById: \r\n    SELECT unum,id,name, pwd,email , CAST(AES_DECRYPT(birthday, 'xxxxwkdalstjr') AS CHAR) AS birthday  FROM users WHERE id = 'testuser222'\r\n  ","timestamp":"2024-10-05 14:23:30"}
+{"0":{"birthday":null,"email":"testuser@example.com","id":"testuser222","name":"Test User","pwd":"$2b$10$gwY.z4Fvi6Xafh9R5SDygO3r9k1WYCYWm3ng0kg5FD/QxvzIndVqC","unum":4},"level":"info","message":"Query results:","timestamp":"2024-10-05 14:23:30"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 14:25:14"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 14:25:14"}
+{"level":"debug","message":"Executing query for userMapper.selectById: \r\n    SELECT unum,id,name, pwd,email , CAST(AES_DECRYPT(birthday, 'xxxxwkdalstjr') AS CHAR) AS birthday  FROM users WHERE id = 'testuser222'\r\n  ","timestamp":"2024-10-05 14:25:23"}
+{"0":{"birthday":null,"email":"testuser@example.com","id":"testuser222","name":"Test User","pwd":"$2b$10$gwY.z4Fvi6Xafh9R5SDygO3r9k1WYCYWm3ng0kg5FD/QxvzIndVqC","unum":4},"level":"info","message":"Query results:","timestamp":"2024-10-05 14:25:23"}
+{"level":"error","message":"Login error: ReferenceError: row is not defined","timestamp":"2024-10-05 14:25:23"}
+{"level":"info","message":"web DB Host: 43.201.220.132","timestamp":"2024-10-05 14:25:40"}
+{"level":"info","message":"DB User: midstar","timestamp":"2024-10-05 14:25:40"}
+{"level":"debug","message":"Executing query for userMapper.selectById: \r\n    SELECT unum,id,name, pwd,email , CAST(AES_DECRYPT(birthday, 'xxxxwkdalstjr') AS CHAR) AS birthday  FROM users WHERE id = 'testuser222'\r\n  ","timestamp":"2024-10-05 14:25:44"}
+{"0":{"birthday":null,"email":"testuser@example.com","id":"testuser222","name":"Test User","pwd":"$2b$10$gwY.z4Fvi6Xafh9R5SDygO3r9k1WYCYWm3ng0kg5FD/QxvzIndVqC","unum":4},"level":"info","message":"Query results:","timestamp":"2024-10-05 14:25:44"}

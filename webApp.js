@@ -13,7 +13,7 @@ const {
   serverConfig,
   bodyParser,
   cors
-      }  = require('./app-contex');
+  }  = require('./app-contex');
 
 const { v4: uuidv4 } = require('uuid'); // UUID 생성을 위해 추가
 

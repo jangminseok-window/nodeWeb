@@ -12,7 +12,13 @@
       "sessionTimeout" :  10  
     },
     
-    "logLevel": "info"
+    "logLevel": "info",
+    "redis": {
+      "host": "localhost",
+      "user": "",
+      "password": "dlalwjd5",
+      "database" : ""
+    }
   }
   
   

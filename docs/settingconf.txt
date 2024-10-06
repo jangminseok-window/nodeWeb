@@ -49,7 +49,7 @@ sudo systemctl enable mysql
 공식 dns
 ec2-43-203-244-204.ap-northeast-2.compute.amazonaws.com
 
-공식 IP : 43.201.220.132
+공인 IP : 43.201.220.132
 --------------------------------------
 sudo apt install apache2 -y   # Ubuntu
 sudo systemctl start apache2   # Ubuntu
@@ -380,11 +380,17 @@ cron 등록
 
 
 
+-------------- redis 설치 ----------------
+sudo apt install redis-server
+Redis 서비스 시작:
+sudo systemctl start redis-server
+sudo systemctl restart redis-server
 
-
-
-
-
-
-
-
+redis 설치 확인:
+redis-cli ping --> PONG 
+설정 수정시
+sudo nano /etc/redis/redis.conf
+bind 0.0.0.0
+ 윈도우용 접속 tool
+https://redis.io/redis-enterprise/redis-insight/
+requirepass dlalwjd5

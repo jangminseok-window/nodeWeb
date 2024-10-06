@@ -12,6 +12,12 @@
       "sessionTimeout" :  10  
     },
 
-    "logLevel" : "info"
+    "logLevel" : "debug",
+    "redis": {
+      "host": "43.201.220.132",
+      "user": "",
+      "password": "dlalwjd5",
+      "database" : ""
+    }
   }
   
