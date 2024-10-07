@@ -394,3 +394,32 @@ bind 0.0.0.0
  윈도우용 접속 tool
 https://redis.io/redis-enterprise/redis-insight/
 requirepass dlalwjd5
+
+
+------------  ELK 스택 --- 
+ELK 스택 (Elasticsearch, Logstash, Kibana):
+Elasticsearch: 로그 데이터 저장 및 검색
+Logstash: 로그 수집 및 처리
+Kibana: 데이터 시각화 및 대시보드 생성
+장점: 강력한 검색 기능, 실시간 모니터링, 커스터마이즈 가능한 대시보드
+
+-- 프로메테우스 솔루션 설치 --------
+jms  pc : 
+cd C:\Program Files\prometheus
+prometheus.exe --config.file=prometheus.yml
+
+net stop prometheus
+net start prometheus
+
+
+
+1.Node Exporter 다운로드 설치
+2.sudo useradd -rs /bin/false node_exporter 사용자 생성
+3.서비스 시작 및 재로드 
+  sudo systemctl daemon-reload
+  sudo systemctl start node_exporter
+  sudo systemctl enable node_exporter
+4. 서비스 확인 
+   sudo systemctl status node_exporter
+
+

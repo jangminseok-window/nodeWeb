@@ -19,26 +19,30 @@ const {
 
 const { v4: uuidv4 } = require('uuid'); // UUID 생성을 위해 추가
 
-logger.info(`web DB Host: ${dbConfig.host}`);
-logger.info(`DB User: ${dbConfig.user}`);
+logger.info(`WebApp Start---->`);
 
+logger.info(`prometeus Start---->`);
+
+const promClient = require('prom-client');
+const collectDefaultMetrics = promClient.collectDefaultMetrics;
+collectDefaultMetrics();
 const app = express();
-// sesseion 값을 req저장해서 사용함
-// 세션 관리를 위한 객체
-const sessions = {};
 
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', promClient.register.contentType);
+  res.end(await promClient.register.metrics());
+});
+
+
+//logger.info(`web DB Host: ${dbConfig.host}`);
+//logger.info(`DB User: ${dbConfig.user}`);
 
 
 
 app.use((req, res, next) => {
-  const sessionVal = uuidv4();
-  const expirationTime = Date.now() + serverConfig.sessionTimeout * 60 * 1000; 
-  sessions[sessionVal] = {  key:sessionVal 
-                          , timestamp: Date.now() 
-                          , expiresAt: expirationTime};
+ //req에 공통으로 설정해야될 사항 설정
   req.common = {
-    sessionVal: sessionVal,
-    sessions: sessions
+    sessionVal: ``
   };
   next();
 });

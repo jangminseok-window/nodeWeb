@@ -11,14 +11,16 @@ const {
   pool,
   serverConfig,
   bodyParser,
-  cors
+  cors,
+  getRedisPool
       }  = require('./app-contex');
 
 
 //각각의 router 정의하고 session 값등 req에 필요한 부분처리
 const router = require('express').Router();
+const { v4: uuidv4 } = require('uuid'); // UUID 생성을 위해 추가
+const  redis = getRedisPool();
 
-// 로그인
 // 로그인
 router.post('/login', async function(req, res) {
   try {
@@ -31,7 +33,6 @@ router.post('/login', async function(req, res) {
      
     const params = { id: userId, secretkey: my_secret_key };
     const query = mybatisMapper.getStatement('userMapper', 'selectById', params);
-    //logger.info(`Executing 22query: ${query}`);
     
     const [rows] = await pool.execute(query, [userId, my_secret_key]);
 
@@ -39,36 +40,50 @@ router.post('/login', async function(req, res) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    logger.info('Query results:', rows);
+    logger.info(`User found: ${userId}`);
    
     // 비밀번호 검증
     const isMatch = await cryptoUtil.comparePassword(password, rows[0].pwd);
     
     if (isMatch) {
-      // 비밀번호 일치
-      // const { pwd, ...userWithoutPassword } = user;
-      // 세션에 사용자 정보 저장 (세션 미들웨어가 설정되어 있다고 가정)
-      // req.session.user = userWithoutPassword;
-      // res.status(200).json({ message: 'Login successful', user: userWithoutPassword });
-      res.status(200).json({ message: 'Login successful'});
+      // 비밀번호 일치 --> redis session 설정
+      logger.info(`Login successful for user: ${userId}`);
+      const uuid = uuidv4();
+
+      const sessionData = JSON.stringify({
+        userId: rows[0].id,
+        name: rows[0].name,
+        email: rows[0].email,
+        birthday: rows[0].birthday,
+      });
+      
+      await redis.set(uuid, sessionData);
+      await redis.expire(uuid, severConfig.sessionTimeout); 
+       
+      logger.info(`Session created for user: ${userId}, sessionId: ${uuid}`);
+
+      res.status(200).json({
+        message: 'Login successful',
+        sessionId: uuid // 클라이언트에 UUID 전달
+      });
     } else {
       // 비밀번호 불일치
+      logger.warn(`Failed login attempt for user: ${userId}`);
       res.status(401).json({ error: 'Invalid credentials' });
     }
   } catch (error) {
-    logger.error('Login error: ' + error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    logger.error(`Login error for user ${userId}: ${error.message}`);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
 });
 
 // 로그아웃 (세션 기반 인증을 사용한다고 가정)
 router.get('/logout', function(req, res) {
-  req.session.destroy((err) => {
-    if (err) {
-      return res.status(500).json({ error: 'Logout failed' });
-    }
-    res.status(200).json({ message: 'Logout successful' });
-  });
+   
+   
+   res.status(500).json({ error: 'Logout failed' });
+   res.status(200).json({ message: 'Logout successful' });
+  
 });
 
 module.exports = router;
