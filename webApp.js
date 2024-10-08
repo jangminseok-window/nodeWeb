@@ -27,11 +27,12 @@ const promClient = require('prom-client');
 const collectDefaultMetrics = promClient.collectDefaultMetrics;
 collectDefaultMetrics();
 const app = express();
+const  redis = getRedisPool();
 
 app.get('/metrics', async (req, res) => {
   res.set('Content-Type', promClient.register.contentType);
   res.end(await promClient.register.metrics());
-});
+}); // prometeus 설정 완료
 
 
 //logger.info(`web DB Host: ${dbConfig.host}`);
@@ -39,11 +40,34 @@ app.get('/metrics', async (req, res) => {
 
 
 
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
  //req에 공통으로 설정해야될 사항 설정
+ try { 
+  logger.info(`app user`);
+  const sessionVal = req?.headers?.['x-session-id'] || null;
+
+  logger.info(`sessionVal::` + sessionVal);
+
   req.common = {
-    sessionVal: ``
+      sessionVal: sessionVal
   };
+    
+  
+
+  if (sessionVal) { // session 값이 있다면 시간 갱신
+    
+      const exists = await redis.exists(sessionVal);
+      if (exists === 1) {
+        const result = await redis.expire(sessionVal, 60);
+      } 
+     
+    
+  }
+  
+  } catch (error) {
+    logger.error(`Error updating session TTL: ${error}`);
+  }    
+
   next();
 });
 

@@ -422,4 +422,14 @@ net start prometheus
 4. 서비스 확인 
    sudo systemctl status node_exporter
 
+-- 아파치 Exporter  -- 
+1.sudo systemctl daemon-reload
+  sudo systemctl start apache_exporter
+  sudo systemctl enable apache_exporter   
+
+
+-- 그라파나 -- JMS PC
+cloud - midstarjang.grafana.net
+http://localhost:3000/?orgId=1 admin/!Dl~~
+ 시각화 하는것은 나중에 확인필요 
 

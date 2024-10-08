@@ -18,33 +18,42 @@ const {
 //각각의 router 정의하고 session 값등 req에 필요한 부분처리
 const router = require('express').Router();
 
-router.get('/view/:userId', async function(req, res) {
+const redis = getRedisPool();
+
+router.get('/view', async function(req, res) {
   try {
 
     const { sessionVal } = req.common;
-    const { sessions } = req.common;
-    const userSession = sessions[sessionVal];
-    const userId = req.params.userId;
     
-    logger.info(`userId xxx: ${userId}`);
-    logger.info(`sessionVal xxx: ${sessionVal}`);
-    logger.info(`session time: ${userSession.timestamp}`);
-    logger.info(`session key: ${userSession.key}`);
-    
-    const redisPool = getRedisPool(); // 이미 생성된 pool
-
-    try {
-      await redisPool.set('test-key', 'Hello from Redis1111');
-      const value = await redisPool.get('test-key');
-      //res.json(value);
-      logger.info(`redisPool test-key: ${value}`);
-    
-    } catch (error) {
-      //res.status(500).json('Redis error');
-      logger.info(`redis error`);
+    if (!sessionVal || sessionVal.trim() === '') {
+      return res.status(400).json({ error: 'Invalid sessionVal' });
     }
 
+    
+    logger.info(`user - view `);
+    logger.info(`sessionVal xxx: ${sessionVal}`);
+    
+    const redis = getRedisPool(); // 이미 생성된 pool
+    let sessionData;
 
+    try {
+
+      const exist =  await redis.exists(sessionVal);
+      if(exist != 1) {
+        return res.status(400).json({ error: 'Invalid sessionVal' });
+      }
+      const value =  await redis.get(sessionVal);
+      logger.info(`redisPool  ${sessionVal}: ${value}`);
+      sessionData = JSON.parse(value);
+     
+    } catch (error) {
+      //res.status(500).json('Redis error');
+      logger.error(`redis get error!!`);
+      throw error; 
+      
+    }
+
+    const userId = sessionData.userId;
     // 입력 검증
     if (!userId || userId.trim() === '') {
       return res.status(400).json({ error: 'Invalid user ID' });
@@ -64,7 +73,6 @@ router.get('/view/:userId', async function(req, res) {
     res.json(rows[0]);
   } catch (error) {
     logger.error('Error executing query:', error);
-    console.error('Full error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });

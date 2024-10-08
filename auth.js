@@ -8,6 +8,7 @@ const {
   cryptoUtil,
   mybatisMapper,
   my_secret_key,
+  severConfig,
   pool,
   serverConfig,
   bodyParser,
@@ -58,8 +59,8 @@ router.post('/login', async function(req, res) {
       });
       
       await redis.set(uuid, sessionData);
-      await redis.expire(uuid, severConfig.sessionTimeout); 
-       
+      await redis.expire(uuid, serverConfig.sessionTimeout); 
+    
       logger.info(`Session created for user: ${userId}, sessionId: ${uuid}`);
 
       res.status(200).json({
@@ -72,18 +73,33 @@ router.post('/login', async function(req, res) {
       res.status(401).json({ error: 'Invalid credentials' });
     }
   } catch (error) {
-    logger.error(`Login error for user ${userId}: ${error.message}`);
+    logger.error(`Login error : ${error.message}`);
     res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
 });
 
 // 로그아웃 (세션 기반 인증을 사용한다고 가정)
-router.get('/logout', function(req, res) {
-   
-   
-   res.status(500).json({ error: 'Logout failed' });
-   res.status(200).json({ message: 'Logout successful' });
-  
+router.post('/logout', async function(req, res) {
+  try {  
+    const sessionVal = req.common.sessionVal;
+    logger.info("sessionVal::" + sessionVal);
+    // 입력 검증
+    if (!sessionVal) {
+      return res.status(400).json({ error: 'Session ID not set!' });
+    }
+
+    const result = await redis.del(sessionVal);
+    if (result === 1) {
+      console.log(`Session "${sessionVal}" has been successfully deleted.`);
+      res.status(200).json({ message: 'Logout successful' });
+    } else {
+      console.log(`Session "${sessionVal}" does not exist.`);
+      res.status(404).json({ error: 'Session not found' });
+    }
+  } catch (error) {
+    console.error('Logout error:', error);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
 });
 
 module.exports = router;
