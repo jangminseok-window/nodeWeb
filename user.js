@@ -12,7 +12,8 @@ const {
   serverConfig,
   bodyParser,
   cors,
-  getRedisPool
+  getRedisPool,
+  app
       }  = require('./app-contex');
 
 //각각의 router 정의하고 session 값등 req에 필요한 부분처리
@@ -70,7 +71,15 @@ router.get('/view', async function(req, res) {
     }
 
     logger.info('Query results:', rows);
-    res.json(rows[0]);
+
+    res.render('userView', {
+      title: 'user View',
+      heading: 'Welcome to userView',
+      items: [rows[0].id, rows[0].name, rows[0].email]
+    });
+
+
+    //res.json(rows[0]);
   } catch (error) {
     logger.error('Error executing query:', error);
     res.status(500).json({ error: 'Internal server error' });
@@ -182,16 +191,37 @@ router.post('/update', async function(req, res) {
 
     try {
       const query = mybatisMapper.getStatement('userMapper', 'updateUser', params);
-      
       const [result] = await pool.execute(query);
+      logger.info(`User info updated. Affected rows: ${result.affectedRows}`);
+
+      const selectparams = { id: userId, secretkey: my_secret_key };
+      const selectQuery = mybatisMapper.getStatement('userMapper', 'selectById', selectparams);
+      const [rows] = await pool.execute(selectQuery);
+     
+      const newSessionData = JSON.stringify({
+        userId: rows[0].id,
+        name: rows[0].name,
+        email:rows[0].email,
+        birthday: rows[0].birthday,
+      });
+    
+      await redis.set(sessionVal, newSessionData);
+      await redis.expire(sessionVal, serverConfig.sessionTimeout); 
+
+     
+
+
     } catch (error) {
       logger.error('Error executing query:', error);
       throw error; 
     }
     
     logger.info(`User ${userId} update successfully`);
-    res.status(201).json({ message: 'User update successfully' });
+    
+   
 
+    res.status(201).json({ message: 'User update successfully' });
+    
   } catch (error) {
     logger.error('Error in user update: ' + error);
     res.status(500).json({ error  });

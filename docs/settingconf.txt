@@ -433,3 +433,11 @@ cloud - midstarjang.grafana.net
 http://localhost:3000/?orgId=1 admin/!Dl~~
  시각화 하는것은 나중에 확인필요 
 
+--- nodejs EJS  엔진 사용 ---
+ 1.npm install ejs
+ 2.
+// 사용 시
+res.render('templates/view.ejs');
+res.render('templates2/view.ejs');
+
+

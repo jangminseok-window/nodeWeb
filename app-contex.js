@@ -21,7 +21,9 @@ const { initRedisPool, getRedisPool } = require('./config/redisConn');
 
 initRedisPool();
 
-
+const app = express();
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
 module.exports = {
   config,
@@ -37,6 +39,7 @@ module.exports = {
   serverConfig,
   bodyParser,
   cors,
-  getRedisPool
+  getRedisPool,
+  app
 
 };

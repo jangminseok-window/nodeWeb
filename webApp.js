@@ -13,7 +13,8 @@ const {
   serverConfig,
   bodyParser,
   cors,
-  getRedisPool
+  getRedisPool,
+  app
  
   }  = require('./app-contex');
 
@@ -26,13 +27,14 @@ logger.info(`prometeus Start---->`);
 const promClient = require('prom-client');
 const collectDefaultMetrics = promClient.collectDefaultMetrics;
 collectDefaultMetrics();
-const app = express();
+
 const  redis = getRedisPool();
 
 app.get('/metrics', async (req, res) => {
   res.set('Content-Type', promClient.register.contentType);
   res.end(await promClient.register.metrics());
 }); // prometeus 설정 완료
+
 
 
 //logger.info(`web DB Host: ${dbConfig.host}`);
