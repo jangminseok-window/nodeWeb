@@ -58,7 +58,7 @@ app.use(async (req, res, next) => {
     
       const exists = await redis.exists(sessionVal);
       if (exists === 1) {
-        const result = await redis.expire(sessionVal, 60);
+        const result = await redis.expire(sessionVal, serverConfig.sessionTimeout);
       } 
      
     
