@@ -441,3 +441,12 @@ res.render('templates/view.ejs');
 res.render('templates2/view.ejs');
 
 
+---- API 서버  --- 
+/api --> 3000 port   --> 분리해서 개발 
+--> nodeApi
+https://github.com/jangminseok-window/nodeApi.git
+
+
+/display --> 3001  port
+--> nodeWeb
+https://github.com/jangminseok-window/nodeWeb.git

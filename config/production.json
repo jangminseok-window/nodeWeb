@@ -9,7 +9,7 @@
     },
     "server": {
       "port": 3000,
-      "sessionTimeout" :  60  
+      "sessionTimeout" :  60 
     },
     
     "logLevel": "info",
@@ -18,7 +18,15 @@
       "user": "",
       "password": "dlalwjd5",
       "database" : ""
+    },
+    
+    "apiServer": {
+      "host": "localhost",
+      "port": 3001
     }
+
+
+
   }
   
   

@@ -1,3 +1,5 @@
+
+const utils = require('./common/utils');
 // router 는 제외하고 정의
 const {  
   config,
@@ -13,7 +15,9 @@ const {
   bodyParser,
   cors,
   getRedisPool,
-  app
+  app,
+  axios,
+  apiConfig
       }  = require('./app-contex');
 
 //각각의 router 정의하고 session 값등 req에 필요한 부분처리
@@ -23,66 +27,34 @@ const redis = getRedisPool();
 
 router.get('/view', async function(req, res) {
   try {
-
     const { sessionVal } = req.common;
-    
     if (!sessionVal || sessionVal.trim() === '') {
       return res.status(400).json({ error: 'Invalid sessionVal' });
     }
 
-    
-    logger.info(`user - view `);
-    logger.info(`sessionVal xxx: ${sessionVal}`);
-    
-    const redis = getRedisPool(); // 이미 생성된 pool
-    let sessionData;
+    logger.info(`user display - view `);
+    logger.info(`display sessionVal xxx: ${sessionVal}`);
 
-    try {
+    const method = 'get';
+    const url = `http://${apiConfig.host}:${apiConfig.port}/user/view`;
+    const headers = {'x-session-id': sessionVal, 'Content-Type': 'application/json'};
+    const params = { userId: sessionVal }; // sessionVal을 쿼리 파라미터로 전달
 
-      const exist =  await redis.exists(sessionVal);
-      if(exist != 1) {
-        return res.status(400).json({ error: 'Invalid sessionVal' });
-      }
-      const value =  await redis.get(sessionVal);
-      logger.info(`redisPool  ${sessionVal}: ${value}`);
-      sessionData = JSON.parse(value);
-     
-    } catch (error) {
-      //res.status(500).json('Redis error');
-      logger.error(`redis get error!!`);
-      throw error; 
-      
-    }
+    const result = await utils.axiosCall(method, url, null, headers, params);
 
-    const userId = sessionData.userId;
-    // 입력 검증
-    if (!userId || userId.trim() === '') {
-      return res.status(400).json({ error: 'Invalid user ID' });
-    }
+    logger.info('API Response:', result); // 로그 추가
 
-    const params = { id: userId, secretkey: my_secret_key };
-    const query = mybatisMapper.getStatement('userMapper', 'selectById', params);
-    //logger.info(`Executing 22query: ${query}`);
-    
-    const [rows] = await pool.execute(query);
-
-    if (rows.length === 0) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    logger.info('Query results:', rows);
+    // result가 객체인 경우 배열로 변환
+    const items = Array.isArray(result) ? result : [result];
 
     res.render('userView', {
-      title: 'user View',
-      heading: 'Welcome to userView',
-      items: [rows[0].id, rows[0].name, rows[0].email]
+      title: 'User View',
+      heading: 'Welcome to User View',
+      items: items
     });
-
-
-    //res.json(rows[0]);
   } catch (error) {
-    logger.error('Error executing query:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    logger.error('Error fetching user data:', error);
+    res.status(500).json({ error: 'Error fetching user data' });
   }
 });
 

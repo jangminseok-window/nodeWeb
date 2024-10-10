@@ -8,7 +8,7 @@
     },
     "server": {
       "port": 3000,
-      "sessionTimeout" :  60   
+      "sessionTimeout" :  60  
     },
     "logLevel": "debug",
     "redis": {
@@ -16,9 +16,11 @@
       "user": "",
       "password": "dlalwjd5",
       "database" : ""
+    },
+    "apiServer": {
+      "host": "localhost",
+      "port": 8082
     }
-    
-
 
   }
   

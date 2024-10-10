@@ -4,11 +4,13 @@ const config = require('config');
 const dbConfig = config.get('db');
 const redisConfig = config.get('redis');
 const serverConfig = config.get('server');
+const apiConfig = config.get('apiServer'); 
 const logger = require('./log');
 const express = require('express');
 const db = require('./config/mysqlConn');
 const cryptoUtil = require('./crypto/cryptoutil');
 const mybatisMapper = require('./mybatis-wrapper');
+const axios = require('axios');
 
 const my_secret_key = dbConfig.secretkey;
 const pool = db.init();
@@ -40,6 +42,8 @@ module.exports = {
   bodyParser,
   cors,
   getRedisPool,
-  app
+  app,
+  axios,
+  apiConfig
 
 };

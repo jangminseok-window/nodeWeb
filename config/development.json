@@ -9,7 +9,7 @@
     },
     "server": {
       "port": 8081,
-      "sessionTimeout" :  600  
+      "sessionTimeout" :  600 
     },
 
     "logLevel" : "debug",
@@ -18,6 +18,13 @@
       "user": "",
       "password": "dlalwjd5",
       "database" : ""
+    },
+    
+    "apiServer": {
+      "host": "localhost",
+      "port": 8082
     }
+    
+
   }
   
