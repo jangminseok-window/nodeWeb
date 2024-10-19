@@ -9,7 +9,9 @@
     },
     "server": {
       "port": 3000,
-      "sessionTimeout" :  60 
+      "sessionTimeout" :  60 ,  
+      "name" :  "live",
+      "status" :  "unstable"
     },
     
     "logLevel": "info",

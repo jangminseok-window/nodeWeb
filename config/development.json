@@ -9,7 +9,9 @@
     },
     "server": {
       "port": 8081,
-      "sessionTimeout" :  600 
+      "sessionTimeout" :  600 ,  
+      "name" :  "dev",
+      "status" :  "unstable"
     },
 
     "logLevel" : "debug",
